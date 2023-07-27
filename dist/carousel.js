@@ -1,5 +1,5 @@
 /**
- * Vue 3 Carousel 0.3.1
+ * Vue 3 Carousel 0.3.2
  * (c) 2023
  * @license MIT
  */
@@ -415,16 +415,20 @@
               isHover.value = false;
           };
           function handleDragStart(event) {
+              console.log('1');
               if (['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) {
                   return;
               }
+              console.log('2');
               isTouch = event.type === 'touchstart';
+              console.log(event.type);
               if (!isTouch) {
                   event.preventDefault();
               }
               if ((!isTouch && event.button !== 0) || isSliding.value) {
                   return;
               }
+              console.log('3');
               startPosition.x = isTouch ? event.touches[0].clientX : event.clientX;
               startPosition.y = isTouch ? event.touches[0].clientY : event.clientY;
               emit('drag-start', {

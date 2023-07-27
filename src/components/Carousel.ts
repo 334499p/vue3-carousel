@@ -181,18 +181,25 @@ export default defineComponent({
     }
 
     function handleDragStart(event: MouseEvent & TouchEvent): void {
+      console.log('1')
       if (
         ['INPUT', 'TEXTAREA', 'SELECT'].includes((event.target as HTMLElement).tagName)
       ) {
         return
       }
+      console.log('2')
+
       isTouch = event.type === 'touchstart'
+      console.log(event.type)
+
       if (!isTouch) {
         event.preventDefault()
       }
       if ((!isTouch && event.button !== 0) || isSliding.value) {
         return
       }
+      console.log('3')
+
 
       startPosition.x = isTouch ? event.touches[0].clientX : event.clientX
       startPosition.y = isTouch ? event.touches[0].clientY : event.clientY
