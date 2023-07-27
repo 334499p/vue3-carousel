@@ -196,6 +196,9 @@ export default defineComponent({
 
       startPosition.x = isTouch ? event.touches[0].clientX : event.clientX
       startPosition.y = isTouch ? event.touches[0].clientY : event.clientY
+      emit('drag-start', {
+        startPosition: startPosition
+      })
 
       document.addEventListener(isTouch ? 'touchmove' : 'mousemove', handleDragging, true)
       document.addEventListener(isTouch ? 'touchend' : 'mouseup', handleDragEnd, true)
@@ -227,6 +230,9 @@ export default defineComponent({
         }
         window.addEventListener('click', captureClick, true)
       }
+
+      emit('drag-end', {
+      })
 
       slideTo(currentSlideIndex.value - draggedSlides)
 
